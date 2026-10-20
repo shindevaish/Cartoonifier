@@ -8,8 +8,10 @@ import engine
 st.title("ChromaSketch")
 st.write("Turn your photo into a pencil sketch, color pencil drawing or cartoon.")
 
+# ----- upload section (center of the page) -----
+file = st.file_uploader("📤 Upload a photo", type=["jpg", "jpeg", "png"])
+
 # ----- sidebar controls -----
-file = st.sidebar.file_uploader("Upload a photo", type=["jpg", "jpeg", "png"])
 style = st.sidebar.radio("Choose style",
                          ["Pencil Sketch", "Color Pencil", "Cartoon"])
 
@@ -21,7 +23,7 @@ else:
         saturation = st.sidebar.slider("Color boost", 1.0, 3.0, 1.5, 0.1)
 
 if file is None:
-    st.info("Upload a photo from the sidebar to begin.")
+    st.info("Upload a photo above to begin.")
     st.stop()
 
 # ----- load image (PIL gives RGB, OpenCV needs BGR) -----
