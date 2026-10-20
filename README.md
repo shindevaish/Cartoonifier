@@ -148,17 +148,13 @@ chromasketch_simple/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/<your-username>/chromasketch.git
-cd chromasketch/chromasketch_simple
+git clone https://github.com/shindevaish/ChromaSketch.git
+cd ChromaSketch 
 
-# 2. (Optional) create a virtual environment
-python -m venv venv
-source venv/bin/activate          # Windows: venv\Scripts\activate
-
-# 3. Install dependencies
+# 2. Install dependencies
 pip install -r requirements.txt
 
-# 4. Launch the app
+# 3. Launch the app
 streamlit run app.py
 ```
 
@@ -199,20 +195,6 @@ cv2.imwrite("cartoon.png", engine.cartoonify(img, iterations=5))
 | Real-time tuning | Instant slider feedback | Often fixed after training |
 | Trade-off | No semantic understanding of objects | Can learn rich artistic styles |
 
-## Limitations and Future Work
-
-**Current limitations**
-- The algorithms respond to brightness and color differences only; they do not recognize faces or objects.
-- Very noisy or very low-contrast photos may produce speckled lines or weak outlines.
-- Results depend on parameter tuning for each image.
-
-**Possible extensions**
-- Live webcam stream and video-file stylization
-- Watercolor and oil-painting styles using mean-shift or stylization filters
-- Paper-texture overlay and a pipeline inspector that shows every intermediate step
-- Batch processing of image folders
-- Face-aware line weighting
-
 ## Tech Stack
 
 | Component | Purpose |
@@ -222,7 +204,3 @@ cv2.imwrite("cartoon.png", engine.cartoonify(img, iterations=5))
 | NumPy | Pixel-matrix arithmetic |
 | Pillow | Reading uploaded image files |
 | Streamlit | Interactive web interface |
-
-## License
-
-Distributed under the MIT License.
