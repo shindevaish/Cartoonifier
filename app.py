@@ -16,9 +16,9 @@ style = st.sidebar.radio("Choose style",
 if style == "Cartoon":
     iterations = st.sidebar.slider("Smoothness (filter passes)", 1, 10, 5)
 else:
-    blur_size = st.sidebar.slider("Blur size", 3, 61, 21, step=2)
+    blur_size = st.sidebar.slider("Blur size", 3, 101, 21, step=2)
     if style == "Color Pencil":
-        saturation = st.sidebar.slider("Color boost", 1.0, 3.0, 1.5, 0.1)
+        saturation = st.sidebar.slider("Color boost", 0.0, 3.0, 1.5, 0.1)
 
 if file is None:
     st.info("Upload a photo above to begin.")
