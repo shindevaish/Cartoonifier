@@ -145,6 +145,7 @@ Measured on an 800×600 image (CPU only; your numbers will vary):
 
 Python · OpenCV · NumPy · Pillow · Streamlit
 
+
 ## Future Work
 
 - Live webcam video stream (streamlit-webrtc)
