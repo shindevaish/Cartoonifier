@@ -1,4 +1,3 @@
-"""app.py - the web page (Streamlit). It only calls functions from engine.py."""
 import cv2
 import numpy as np
 import streamlit as st
@@ -8,7 +7,10 @@ import engine
 st.title("ChromaSketch")
 st.write("Turn your photo into a pencil sketch, color pencil drawing or cartoon.")
 
-file = st.file_uploader(" Upload a photo", type=["jpg", "jpeg", "png"])
+source = st.radio("Image source", ["Upload a photo", "Use demo image"], horizontal=True)
+file = None
+if source == "Upload a photo":
+    file = st.file_uploader("📤 Upload a photo", type=["jpg", "jpeg", "png"])
 
 style = st.sidebar.radio("Choose style",
                          ["Pencil Sketch", "Color Pencil", "Cartoon"])
@@ -16,15 +18,17 @@ style = st.sidebar.radio("Choose style",
 if style == "Cartoon":
     iterations = st.sidebar.slider("Smoothness (filter passes)", 1, 10, 5)
 else:
-    blur_size = st.sidebar.slider("Blur size", 3, 101, 21, step=2)
+    blur_size = st.sidebar.slider("Blur size", 3, 61, 21, step=2)
     if style == "Color Pencil":
-        saturation = st.sidebar.slider("Color boost", 0.0, 3.0, 1.5, 0.1)
+        saturation = st.sidebar.slider("Color boost", 1.0, 3.0, 1.5, 0.1)
 
-if file is None:
-    st.info("Upload a photo above to begin.")
+if source == "Use demo image":
+    img = engine.make_demo_image()
+elif file is not None:
+    img = cv2.cvtColor(np.array(Image.open(file).convert("RGB")), cv2.COLOR_RGB2BGR)
+else:
+    st.info("Upload a photo above, or choose 'Use demo image'.")
     st.stop()
-
-img = cv2.cvtColor(np.array(Image.open(file).convert("RGB")), cv2.COLOR_RGB2BGR)
 img = engine.resize_image(img)
 
 if style == "Pencil Sketch":
